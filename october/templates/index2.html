@@ -1,0 +1,127 @@
+{% extends 'top-footer.html' %}
+{% block content %}
+<div class="container-fluid px-4">
+    <h1 class="mt-4">Dashboard</h1>
+
+    <div class="row" style="padding-top:1rem;">
+
+        <div class="col-lg-6 container" >
+
+            <div class="card mb-4">
+                <div class="card-header">
+                    <i class="fas fa-chart-bar me-1"></i>
+                    Daily Chart
+                </div>
+
+                <div class="card-body">
+                    <figure class="highcharts-figure">
+                        <div id="chart01"></div>
+                    </figure>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="col-lg-6">
+            <div class="card mb-4">
+                <div class="card-header">
+                    <i class="fas fa-chart-bar me-1"></i>
+                    Weekly Chart
+                </div>
+                <div class="card-body">
+                     <figure class="highcharts-figure">
+                        <div id="chart02"></div>
+                    </figure>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <div class="card mb-4">
+        <div class="card-header">
+            <i class="fas fa-table me-1"></i>
+            DataTable Example
+        </div>
+        <div class="card-body">
+            <table id="datatablesSimple">
+            </table>
+        </div>
+    </div>
+
+</div>
+
+<script>
+    $(document).ready(function () {
+        var categories = {{ categories|tojson }};
+        var series_data = {{ series_data|tojson }};
+
+        // 기본 차트 렌더링
+        var chart = Highcharts.chart('chart01', {
+            title: { text: '일간 데이터' },
+            subtitle: { text: 'sample : 241023 취침시' },
+            yAxis: {
+                title: { text: '측정 무게 (g)' }
+            },
+            xAxis: {
+                categories: categories,
+                crosshair: true
+            },
+            series: series_data,
+            legend: {
+                layout: 'vertical',
+                align: 'right',
+                verticalAlign: 'middle'
+            }
+        });
+
+        // 버튼 클릭시 데이터 변경
+        $('#changeData').click(function () {
+            var newSeries = [{
+                name: '무게',
+                data: series_data[0].data.reverse()  // 데이터 역순 처리
+            }];
+
+            chart.update({
+                series: newSeries
+            });
+        });
+
+
+        var categories_day = {{ categories_day|tojson }};
+        var series_data_day = {{ series_data_day|tojson }};
+
+        // 기본 차트 렌더링
+        var chart = Highcharts.chart('chart02', {
+            title: { text: '주간 데이터' },
+            subtitle: { text: 'sample : 24년 10월 4주차' },
+            yAxis: {
+                title: { text: '측정 무게 (g)' }
+            },
+            xAxis: {
+                categories: categories_day,
+                crosshair: true
+            },
+            series: series_data_day,
+            legend: {
+                layout: 'vertical',
+                align: 'right',
+                verticalAlign: 'middle'
+            }
+        });
+
+        // 버튼 클릭시 데이터 변경
+        $('#changeData').click(function () {
+            var newSeries = [{
+                name: '무게',
+                data: series_data[0].data.reverse()  // 데이터 역순 처리
+            }];
+
+            chart.update({
+                series: newSeries
+            });
+        });
+    });
+</script>
+
+{% endblock %}
+
