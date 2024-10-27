@@ -1,4 +1,4 @@
-{% extends 'top-footer.html' %}
+{% extends 'top-footer2.html' %}
 {% block content %}
 <div class="container-fluid px-4">
     <h1 class="mt-4">Dashboard</h1>
@@ -60,7 +60,7 @@
         // 기본 차트 렌더링
         var chart = Highcharts.chart('chart01', {
             title: { text: 'sample : 241027' },
-<!--            subtitle: { text: 'sample : 241023 취침시' },-->
+<!--            subtitle: { text: 'sample : 241024 취침시' },-->
             yAxis: {
                 title: { text: '측정 무게 (g)' }
             },
@@ -89,15 +89,18 @@
         });
 
 
+
+
         var categories_day = {{ categories_day|tojson }};
         var series_data_day = {{ series_data_day|tojson }};
+
 
         // 기본 차트 렌더링
         var chart = Highcharts.chart('chart02', {
             title: { text: '주간 데이터' },
             subtitle: { text: 'sample : 24년 10월 4주차' },
             yAxis: {
-                title: { text: '측정 무게 (g)' }
+                title: { text: '일일 총 수면시간 (시간)' }
             },
             xAxis: {
                 categories: categories_day,
@@ -111,17 +114,7 @@
             }
         });
 
-        // 버튼 클릭시 데이터 변경
-        $('#changeData').click(function () {
-            var newSeries = [{
-                name: '무게',
-                data: series_data[0].data.reverse()  // 데이터 역순 처리
-            }];
 
-            chart.update({
-                series: newSeries
-            });
-        });
     });
 </script>
 

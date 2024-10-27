@@ -23,13 +23,13 @@
 
     <script>
         $(document).ready(function () {
-            var categories = {{ categories2|tojson }};
-            var series_data = {{ series_data2|tojson }};
+            var categories = {{ categories|tojson }};
+            var series_data = {{ series_data|tojson }};
 
             // 기본 차트 렌더링
             var chart = Highcharts.chart('chart01', {
                 title: { text: '수면 데이터' },
-                subtitle: { text: 'sample : 241026 취침시' },
+                subtitle: { text: 'sample : 241024 취침시' },
                 yAxis: {
                     title: { text: '측정 무게 (g)' }
                 },

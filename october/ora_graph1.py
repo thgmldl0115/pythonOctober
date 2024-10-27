@@ -37,12 +37,13 @@ sql_1 = """
 """
 
 sql_sec = """
-    SELECT SUBSTR(detailtime, 12, 6) AS sec
+    SELECT SUBSTR(detailtime, 12, 8) AS sec
           ,ROUND(AVG(REGEXP_REPLACE(sleep_g, '[^0-9.-]', ''))) as sleep
     FROM tb_data_241023
-    WHERE SUBSTR(detailtime, 1, 10) = '2024-10-25'
-    GROUP BY SUBSTR(detailtime, 12, 6)
-    ORDER BY SUBSTR(detailtime, 12, 6) ASC
+    WHERE SUBSTR(detailtime, 1, 10) = '2024-10-27'
+    AND  SUBSTR(detailtime, 12, 8) < '04:57:30'
+    GROUP BY SUBSTR(detailtime, 12, 8)
+    ORDER BY SUBSTR(detailtime, 12, 8) ASC
 """
 
 # DataFrame에 SQL쿼리 결과 저장

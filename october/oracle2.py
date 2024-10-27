@@ -1,23 +1,16 @@
 # pip install cx_Oracle
 import time
 from datetime import datetime
-
 import serial
 import cx_Oracle
-
 conn = cx_Oracle.connect("october", "october", "localhost:1521/xe")
 cur = conn.cursor()
-
 sql = """
-
         INSERT INTO tb_data_241023(sleep_g, detailtime)
         VALUES(:1, :2)
-
 """
-
 arduino = serial.Serial('COM7', 9600)
 time.sleep(2)
-
 while True:
     try:
         a = arduino.readline()
