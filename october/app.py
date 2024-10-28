@@ -156,7 +156,17 @@ def oracle_data_bar():
 def index2():
     # 데이터를 읽어서 HTML로 넘겨줌
     categories, series_data = oracle_data2()
-    categories_day, series_data_day = oracle_data_bar()
+    
+    # 하드코딩
+    categories_day = ['2024-10-21', '2024-10-22', '2024-10-23', '2024-10-24', '2024-10-25', '2024-10-26',
+                      '2024-10-27']  # 원하는 날짜 리스트
+    series_data_day = [
+        {
+            'name': '수면시간',
+            'data': [7.7, 7.4, 4.88, 6.17, 3.1, 3.58, 8.72],  # 원하는 수면시간 데이터 리스트
+            'type': 'column'
+        }
+    ]
     return render_template('index2.html', categories=categories, series_data=series_data
                            ,categories_day=categories_day, series_data_day=series_data_day)
 
@@ -178,11 +188,11 @@ def index3():
     categories, series_data = oracle_data2()
 
     # 하드코딩
-    categories_day = ['2024-10-21','2024-10-22','2024-10-23','2024-10-24', '2024-10-25', '2024-10-26']  # 원하는 날짜 리스트
+    categories_day = ['2024-10-21','2024-10-22','2024-10-23','2024-10-24', '2024-10-25', '2024-10-26', '2024-10-27']  # 원하는 날짜 리스트
     series_data_day = [
         {
             'name': '수면시간',
-            'data': [7.7, 7.4, 4.88, 6.17, 3.1, 3.58],  # 원하는 수면시간 데이터 리스트
+            'data': [7.7, 7.4, 4.88, 6.17, 3.1, 3.58, 8.72],  # 원하는 수면시간 데이터 리스트
             'type': 'column'
         }
     ]
